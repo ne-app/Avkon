@@ -5,6 +5,7 @@
 #ifndef NEAPP_AVKON_PDF_HPP
 #define NEAPP_AVKON_PDF_HPP
 
+#include <ne_app/core/detail/config.hpp>
 #include <ne_app/core/store.hpp>
 #include <sstream>
 

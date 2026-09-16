@@ -18,8 +18,8 @@
 #endif
 #endif
 
-#define NEAPP_AVKON_VERSION "v1.1.1-AVKON-PUBLIC"
-#define NEAPP_AVKON_VERSION_BCD 0x1000000
+#define NEAPP_AVKON_VERSION "v1.1.2-AVKON-PUBLIC"
+#define NEAPP_AVKON_VERSION_BCD 0x1010200
 
 namespace ne_app::core {
 
