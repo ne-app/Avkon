@@ -7,15 +7,14 @@
 #include <ne_app/quickstart/quickstart.hpp>
 
 ne_app::tasks::task_coroutine task(int argc, char** argv) {
-  if (argc < 2) co_return;
+  if (argc < 1) co_return;
 
   try {
     ne_app::tasks::task_tag t;
 
     ne_app::tasks::run<void(std::atomic_flag&)>([&argv](std::atomic_flag& fl) { 
       ::ne_app::qs::index_file(argv[0]);
-      ::ne_app::qs::index_file(argv[0]);
-      ::ne_app::qs::index_file(argv[0]);
+      ::ne_app::qs::index_file(argv[1]);
       fl.clear(std::memory_order_release);
     }, t);
 
