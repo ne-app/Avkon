@@ -110,9 +110,13 @@ void AVKON_EXPORT index_file(const std::string& path) {
     constexpr auto offset_per_jump = 8196;
 
     for (size_t off_cont{}; off_cont < content.size(); ++off_cont) {
-      kDocumentChunks.emplace_back(
-          path, content.substr(off_cont + off_card, offset_per_jump));
-
+      try {
+        kDocumentChunks.emplace_back(
+            path, content.substr(off_cont + off_card, offset_per_jump));
+      } catch (...) {
+        break;
+      }
+      
       off_card += offset_per_jump;
     }
 
