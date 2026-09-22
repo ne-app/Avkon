@@ -20,7 +20,7 @@ struct storage_pair {
 };
 
 template <typename Pair>
-struct storage_object final : public Pair {
+struct storage_object : public Pair {
   using key_type = typename Pair::key_type;
   using value_type = typename Pair::value_type;
 
