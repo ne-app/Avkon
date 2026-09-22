@@ -92,7 +92,7 @@ void AVKON_EXPORT index_file(const std::string& path) {
     return;
   }
 
-  if (!is_too_large()) return;
+  if (is_too_large()) return;
 
   std::atomic_flag flg = ATOMIC_FLAG_INIT;
 
