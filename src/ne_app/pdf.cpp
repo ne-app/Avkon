@@ -52,6 +52,8 @@ ne_app::core::stream_type& operator>>(
 
   is >> tmp_is.rdbuf();
 
+  obj.value_ << is.str();
+
   flg.clear(std::memory_order_release);
 
   return is;
