@@ -13,7 +13,7 @@ namespace ne_app {
 
 struct pdf_pair;
 
-struct pdf_pair final {
+struct pdf_pair {
   using key_type = std::string;
   using value_type = std::stringstream;
 
