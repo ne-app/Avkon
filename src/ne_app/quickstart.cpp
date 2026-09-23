@@ -8,14 +8,6 @@
 #include <filesystem>
 #include <ne_app/quickstart/quickstart.hpp>
 
-#ifndef QS_MAGIC_IDENT
-#define QS_MAGIC_IDENT ((uint32_t)' QSINF')
-#endif
-
-#ifndef QS_PAD_LEN
-#define QS_PAD_LEN (4)
-#endif
-
 namespace ne_app::qs {
 
 /// @brief path+chunk combo for the QS chunks.
