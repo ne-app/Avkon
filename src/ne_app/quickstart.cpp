@@ -77,7 +77,7 @@ void AVKON_EXPORT index_file(const std::string& path) {
 
   if (is_too_large()) return;
 
-  std::atomic_flag flg = ATOMIC_FLAG_INIT;
+  static std::atomic_flag flg = ATOMIC_FLAG_INIT;
 
   while (!flg.test_and_set(std::memory_order_acquire));
 
