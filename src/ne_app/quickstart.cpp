@@ -8,14 +8,6 @@
 #include <filesystem>
 #include <ne_app/quickstart/quickstart.hpp>
 
-#ifndef QS_MAGIC_IDENT
-#define QS_MAGIC_IDENT ((uint32_t)' QSINF')
-#endif
-
-#ifndef QS_PAD_LEN
-#define QS_PAD_LEN (4)
-#endif
-
 namespace ne_app::qs {
 
 /// @brief path+chunk combo for the QS chunks.
@@ -25,16 +17,8 @@ namespace detail {
 
 using qs_exception = std::runtime_error;
 
-/// @brief File frame from host configuration file to download for client file.
-struct information_header final {
-  int32_t magic_;
-  int16_t type_;
-  size_t len_;
-  uint8_t pad_[QS_PAD_LEN];
-};
-
-/// @brief File type of QS Cache.
-enum class type : int16_t {
+/// @brief File quickstart_type of QS Cache.
+enum class quickstart_type : int16_t {
   invalid,
   pdf = 700,
   json,
@@ -43,18 +27,18 @@ enum class type : int16_t {
   css,
 };
 
-/// @brief Convert file type to string.
-const char* file_type_to_str(const type& type) {
-  switch (type) {
-    case type::pdf:
+/// @brief Convert file quickstart_type to string.
+const char* file_type_to_str(const quickstart_type& quickstart_type) {
+  switch (quickstart_type) {
+    case quickstart_type::pdf:
       return "PDF";
-    case type::json:
+    case quickstart_type::json:
       return "JSON";
-    case type::js:
+    case quickstart_type::js:
       return "JS";
-    case type::html:
+    case quickstart_type::html:
       return "HTML";
-    case type::css:
+    case quickstart_type::css:
       return "CSS";
     default:
       return "INVALID";
@@ -73,8 +57,7 @@ bool AVKON_EXPORT is_too_large() noexcept {
   if (kDocumentChunks.empty()) return false;
 
   constexpr auto max_memory_limit = 16'000'000;
-
-  return kDocumentChunks.size() > 16'000'000;
+  return kDocumentChunks.size() > max_memory_limit;
 }
 
 /// @brief Adds the chunks to the QS append-only kDocumentChunks part.
@@ -94,7 +77,7 @@ void AVKON_EXPORT index_file(const std::string& path) {
 
   if (is_too_large()) return;
 
-  std::atomic_flag flg = ATOMIC_FLAG_INIT;
+  static std::atomic_flag flg = ATOMIC_FLAG_INIT;
 
   while (!flg.test_and_set(std::memory_order_acquire));
 
