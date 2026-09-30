@@ -8,6 +8,7 @@
 namespace ne_app::tasks {
 
 struct task_promise;
+struct task_coroutine;
 
 template <typename Args, typename... Args2>
 void run(const std::function<Args>& fn, task_tag& t, Args2&&... a) {
@@ -48,9 +49,14 @@ await_or_error await_first(const std::function<Args>& fn, task_tag& t,
 
 struct task_coroutine : std::coroutine_handle<task_promise> {
   using promise_type = task_promise;
+  using promise_ref_type = promise_type&;
 };
 
 struct task_promise {
+  task_coroutine get_return_object() const {
+    return {task_coroutine::from_promise(*this)};
+  }
+
   task_coroutine get_return_object() {
     return {task_coroutine::from_promise(*this)};
   }
