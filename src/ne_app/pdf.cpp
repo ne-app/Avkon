@@ -39,8 +39,8 @@ ne_app::core::stream_type& operator>>(
     ne_app::core::stream_type& is,
     ne_app::core::storage_object<ne_app::pdf_pair>& obj) {
   if (!obj.is_valid(obj.key_)) ne_app::core::throw_pdf_error();
+  
   if (obj.value_.bad()) ne_app::core::throw_pdf_error();
-
   if (obj.value_.eof()) ne_app::core::throw_pdf_error();
 
   static std::atomic_flag flg = ATOMIC_FLAG_INIT;
