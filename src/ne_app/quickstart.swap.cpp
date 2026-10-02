@@ -7,7 +7,11 @@
 #include <stdexcept>
 
 #ifndef QS_MAGIC_IDENT
-#define QS_MAGIC_IDENT ((uint32_t)' QSINF')
+#define QS_MAGIC_IDENT ((uint32_t)'QSIN')
+#endif
+
+#ifndef QS_VER_IDENT
+#define QS_VER_IDENT (0x001)
 #endif
 
 #ifndef QS_PAD_LEN
