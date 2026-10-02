@@ -33,4 +33,6 @@ namespace ne_app {
     using format_error = std::runtime_error;
     using swap_error = std::runtime_error;
 
+    using file_stream = std::fstream;
+
 }
