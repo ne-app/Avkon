@@ -15,7 +15,7 @@ std::vector<std::pair<std::string, std::string>> kDocumentChunks;
 
 namespace detail {
 
-using qs_exception = std::runtime_error;
+using error = std::runtime_error;
 
 /// @brief File quickstart_type of QS Cache.
 enum class quickstart_type : int16_t {
@@ -99,7 +99,7 @@ void AVKON_EXPORT index_file(const std::string& path) {
       } catch (...) {
         break;
       }
-      
+
       off_card += offset_per_jump;
     }
 
